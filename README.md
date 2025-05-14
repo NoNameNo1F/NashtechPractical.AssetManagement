@@ -1,0 +1,1 @@
+# NashtechPractical.AssestManagement
