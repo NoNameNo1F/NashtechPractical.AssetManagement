@@ -1,5 +1,3 @@
-# Docker
-# Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 name: $(Build.SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
