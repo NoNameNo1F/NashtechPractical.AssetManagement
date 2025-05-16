@@ -2,5 +2,5 @@
 
 public class AppSettings
 {
-    
+    public JwtOptions Jwt { get; set; }
 }

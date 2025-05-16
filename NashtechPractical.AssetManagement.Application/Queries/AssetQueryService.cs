@@ -2,5 +2,8 @@
 
 public class AssetQueryService
 {
-    
+    public AssetQueryService()
+    {
+        
+    }
 }

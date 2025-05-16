@@ -1,6 +1,6 @@
 ﻿namespace NashtechPractical.AssetManagement.WebAPI.Application.Exceptions;
 
-public class AssetNotFoundException
+public class AssetNotFoundException : Exception
 {
     
 }

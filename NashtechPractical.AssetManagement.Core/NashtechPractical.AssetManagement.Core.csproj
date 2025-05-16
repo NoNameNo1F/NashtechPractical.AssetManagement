@@ -10,4 +10,8 @@
       <ProjectReference Include="..\NashtechPractical.AssetManagement.Shared\NashtechPractical.AssetManagement.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.16" />
+    </ItemGroup>
+
 </Project>

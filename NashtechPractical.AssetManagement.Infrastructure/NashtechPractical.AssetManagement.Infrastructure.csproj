@@ -7,8 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.5.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.16" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NashtechPractical.AssetManagement.Application\NashtechPractical.AssetManagement.Application.csproj" />
+      <ProjectReference Include="..\NashtechPractical.AssetManagement.Core\NashtechPractical.AssetManagement.Core.csproj" />
     </ItemGroup>
 
 </Project>

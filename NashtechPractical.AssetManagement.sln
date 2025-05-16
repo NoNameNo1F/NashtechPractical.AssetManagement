@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NashtechPractical.AssetMana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NashtechPractical.AssetManagement.Shared", "NashtechPractical.AssetManagement.Shared\NashtechPractical.AssetManagement.Shared.csproj", "{26D971E8-B42B-4819-B205-E8190A4DAE9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NashtechPractical.AssetManagement.Application", "NashtechPractical.AssetManagement.Application\NashtechPractical.AssetManagement.Application.csproj", "{0785FC90-31A6-457E-B86C-2828FA0E942B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{26D971E8-B42B-4819-B205-E8190A4DAE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26D971E8-B42B-4819-B205-E8190A4DAE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26D971E8-B42B-4819-B205-E8190A4DAE9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0785FC90-31A6-457E-B86C-2828FA0E942B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0785FC90-31A6-457E-B86C-2828FA0E942B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0785FC90-31A6-457E-B86C-2828FA0E942B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0785FC90-31A6-457E-B86C-2828FA0E942B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
