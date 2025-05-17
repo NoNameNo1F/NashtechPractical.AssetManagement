@@ -1,0 +1,94 @@
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+# asda
+name: $(Build.SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+    - 'NashtechPractical.AssetManagement.Application/*'
+    - 'NashtechPractical.AssetManagement.Core/*'
+    - 'NashtechPractical.AssetManagement.Infrastructure/*'
+    - 'NashtechPractical.AssetManagement.Shared/*'
+    - 'NashtechPractical.AssetManagement.WebAPI/*'
+    - 'azure-pipelines-ci.yml'
+
+resources:
+- repo: self
+  
+variables:
+  tag: '$(Build.BuildId)'
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  dockerfilePath: 'NashtechPractical.AssetManagement.WebAPI/Dockerfile'
+
+  ## Azure Container Registry
+  dockerRegistryServiceConnection: 'YourAzureContainerRegistryServiceConnection'
+  azureSubscription: 'YourAzureSubscriptionServiceConnection'
+  ## Test if contained
+  testProjectPattern: '**/*[Tt]ests/*[Tt]ests.csproj' 
+
+# CI Pipelines
+stages:
+- stage: Build
+  displayName: 'CI: Build, Lint & Test'
+  condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+
+  jobs:
+
+  - job: Build
+    displayName: Build
+    pool:
+      name: Test
+    steps:
+    - task: UseDotNet@2
+      displayName: 'USe .NET SDK'
+      inputs:
+        packageType: 'sdk'
+        version: '8.x'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore NuGet Packages'
+      inputs:
+        command: 'restore'
+        projects: '$(solution)'
+        feedsToUse: 'select'
+
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'Linting (.NET Format)'
+    #   inputs:
+    #     command: 'custom'
+    #     custom: 'format'
+    #     arguments: '--verify-no-changes --verbosity diagnostic $(solution)'
+    - task: DotNetCoreCLI@2
+      displayName: 'Build Solution'
+      inputs:
+        command: 'build'
+        projects: '$(solution)'
+        arguments: '--configuration $(buildConfiguration) --no-restore'
+
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'Run Unit & Integration Tests'
+    #   inputs:
+    #     command: 'test'
+    #     projects: '$(testProjectPattern)' # Make sure this pattern matches your test projects
+    #     arguments: '--configuration $(buildConfiguration) --no-build --logger "trx;LogFileName=testresults.trx"'
+    #     publishTestResults: true
+    
+    # - task: PublishCodeCoverageResults@1
+    #   inputs:
+    #     codeCoverageTool: 'Cobertura' # Or JaCoCo, etc.
+    #     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+
+    # - task: Docker@2
+    #   displayName: Build an image
+    #   inputs:
+    #     command: build
+    #     dockerfile: '$(Build.SourcesDirectory)/NashtechPractical.AssetManagement.WebAPI/Dockerfile'
+    #     tags: |
+    #       $(tag)
