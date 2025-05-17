@@ -100,7 +100,7 @@ stages:
     - task: AzureWebApp@1
       displayName: 'Deploy to Azure App Service'
       inputs:
-        azureSubscription: $(APP_SERVICE_CONNECTION)
+        azureSubscription: 'test-service-connect' #$(APP_SERVICE_CONNECTION)
         appType: 'webApp'
         appName: $(APP_SERVICE_NAME)
         package: '$(Pipeline.Workspace)/WebAppPackage/**/*.zip'
