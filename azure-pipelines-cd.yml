@@ -18,18 +18,23 @@ pool:
   name: Test
 
 variables:
-  group: BackendSecrets
-  solution: '**/*.sln'
-  tag: '$(Build.BuildId)'
-  buildConfiguration: 'Release'
-  dotnetSdkVersion: '9.x'
-  webApiProjectName: 'NashtechPractical.AssetManagement.WebAPI/NashtechPractical.AssetManagement.WebAPI.csproj'
-
+- group: BackendSecrets
+- name: solution
+  value: '**/*.sln'
+- name: tag
+  value: '$(Build.BuildId)'
+- name: buildConfiguration
+  value: 'Release'
+- name: dotnetSdkVersion
+  value: '9.x'
+- name: webApiProjectName
+  value: 'NashtechPractical.AssetManagement.WebAPI/NashtechPractical.AssetManagement.WebAPI.csproj'
   # EF Migrations Variables
-  efMigrationsProject: 'NashtechPractical.AssetManagement.Infrastructure/NashtechPractical.AssetManagement.Infrastructure.csproj'
-  efStartupProject: 'NashtechPractical.AssetManagement.WebAPI/NashtechPractical.AssetManagement.WebAPI.csproj'
-  aaaaaaaaaa: 'vunguyennasherhcmus'
-  
+- name: efMigrationsProject
+  value: 'NashtechPractical.AssetManagement.Infrastructure/NashtechPractical.AssetManagement.Infrastructure.csproj'
+- name: efStartupProject
+  value: 'NashtechPractical.AssetManagement.WebAPI/NashtechPractical.AssetManagement.WebAPI.csproj'
+
 stages:
 - stage: Build_And_Package
   displayName: 'Build, Package & Migrate DB'
