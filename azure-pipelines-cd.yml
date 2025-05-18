@@ -83,25 +83,26 @@ stages:
   dependsOn: Build_And_Package
   condition: succeeded()
   jobs:
-  - job: DeployWebAppToAAS
+  - deployment: DeployWebAppToAAS
     displayName: 'Deploy Web App to Azure App Service'
-    # environment: $(APP_SERVICE_NAME)
-    # pool:
-    #   name: Test
-    steps:
-    # Step 1: Download the WebAppPackage artifact
-    - task: DownloadPipelineArtifact@2
-      displayName: 'Download WebAppPackage Artifact'
-      inputs:
-        buildType: 'current'
-        artifactName: 'WebAppPackage'
-        targetPath: '$(Pipeline.Workspace)/WebAppPackage'
+    environment: Development
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # Step 1: Download the WebAppPackage artifact
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download WebAppPackage Artifact'
+            inputs:
+              buildType: 'current'
+              artifactName: 'WebAppPackage'
+              targetPath: '$(Pipeline.Workspace)/WebAppPackage'
 
-    # Step 2: Deploy to Azure App Service
-    - task: AzureWebApp@1
-      displayName: 'Deploy to Azure App Service'
-      inputs:
-        azureSubscription: 'test-service-connect' #$(APP_SERVICE_CONNECTION)
-        appType: 'webApp'
-        appName: $(aaaaaaaaaa)
-        package: '$(Pipeline.Workspace)/WebAppPackage/**/*.zip'
+          # Step 2: Deploy to Azure App Service
+          - task: AzureWebApp@1
+            displayName: 'Deploy to Azure App Service'
+            inputs:
+              azureSubscription: 'test-service-connect' #$(APP_SERVICE_CONNECTION)
+              appType: 'webApp'
+              appName: $(aaaaaaaaaa)
+              package: '$(Pipeline.Workspace)/WebAppPackage/**/*.zip'
