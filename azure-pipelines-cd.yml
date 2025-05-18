@@ -28,7 +28,7 @@ variables:
   # EF Migrations Variables
   efMigrationsProject: 'NashtechPractical.AssetManagement.Infrastructure/NashtechPractical.AssetManagement.Infrastructure.csproj'
   efStartupProject: 'NashtechPractical.AssetManagement.WebAPI/NashtechPractical.AssetManagement.WebAPI.csproj'
-  aaaaaaaaaa: 'vunguyennasherhcmus'
+
   
 stages:
 - stage: Build_And_Package
@@ -102,7 +102,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy to Azure App Service'
             inputs:
-              azureSubscription: 'test-service-connect' #$(APP_SERVICE_CONNECTION)
+              azureSubscription: $(APP_SERVICE_CONNECTION)
               appType: 'webApp'
-              appName: $(aaaaaaaaaa)
+              appName: $(APP_SERVICE_NAME)
               package: '$(Pipeline.Workspace)/WebAppPackage/**/*.zip'
