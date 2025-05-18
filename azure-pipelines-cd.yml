@@ -34,7 +34,7 @@ variables:
   value: 'NashtechPractical.AssetManagement.Infrastructure/NashtechPractical.AssetManagement.Infrastructure.csproj'
 - name: efStartupProject
   value: 'NashtechPractical.AssetManagement.WebAPI/NashtechPractical.AssetManagement.WebAPI.csproj'
-  
+
 stages:
 - stage: Build_And_Package
   displayName: 'Build, Package & Migrate DB'
